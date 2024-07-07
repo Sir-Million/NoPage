@@ -2,11 +2,23 @@ const socket = io('https://nocardgame.glitch.me'); // Reemplaza con la URL de tu
 
 document.addEventListener('DOMContentLoaded', () => {
     const gameId = 'game1'; // ID del juego, podría generarse dinámicamente o como prefieras
-    const playerId = 'player1'; // ID del jugador, podría generarse dinámicamente o como prefieras
-    const playerType = 'impostor'; // Tipo de jugador: 'impostor' o 'normal'
 
-    // Emitir evento para unirse al juego
-    socket.emit('joinGame', gameId, playerId, playerType);
+    // Función para obtener datos del juego desde el servidor
+    function fetchGameData(gameId) {
+        fetch(`https://nocardgame.glitch.me/game/${gameId}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Game Data:', data);
+                // Actualizar interfaz con los datos del juego si es necesario
+            })
+            .catch(error => console.error('Error fetching game data:', error));
+    }
+
+    // Llamar a la función para obtener los datos del juego al cargar la página
+    fetchGameData(gameId);
+
+    // Resto del código de Socket.io y eventos de juego
+    // ...
 
     socket.on('stateChanged', (newState) => {
         document.getElementById('gameState').textContent = `Current State: ${newState}`;
