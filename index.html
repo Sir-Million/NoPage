@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Game</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="game.js" defer></script>
+</head>
+<body>
+    <h1>Multiplayer Game</h1>
+    <button id="actionButton">Send Action</button>
+    <script>
+        const socket = io('https://your-repl-name.repl.co'); // Reemplaza con la URL de tu Repl
+
+        document.getElementById('actionButton').addEventListener('click', () => {
+            const action = { player: 'Player1', action: 'move', direction: 'left' };
+            socket.emit('playerAction', action);
+        });
+
+        socket.on('playerAction', (data) => {
+            console.log('Player action received:', data);
+        });
+    </script>
+</body>
+</html>
