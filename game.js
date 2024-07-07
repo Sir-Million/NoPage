@@ -1,4 +1,4 @@
-const socket = io('https://nocardgame.glitch.me'); // Reemplaza con la URL de tu servidor en Glitch
+const socket = io('https://nocardgame.glitch.me');
 
 document.addEventListener('DOMContentLoaded', () => {
     const gameId = 'game1'; // ID del juego, podría generarse dinámicamente o como prefieras
